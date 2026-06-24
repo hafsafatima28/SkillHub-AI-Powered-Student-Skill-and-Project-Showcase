@@ -1,0 +1,47 @@
+package backend;
+
+import java.util.*;
+
+class FoodRecord {
+    String mealType;
+    int preparedQuantity;
+    int consumedQuantity;
+
+    FoodRecord(String mealType, int preparedQuantity, int consumedQuantity) {
+        this.mealType = mealType;
+        this.preparedQuantity = preparedQuantity;
+        this.consumedQuantity = consumedQuantity;
+    }
+
+    int getWastage() {
+        return preparedQuantity - consumedQuantity;
+    }
+}
+
+public class FoodWastageBackend {
+
+    public static void main(String[] args) {
+
+        List<FoodRecord> records = new ArrayList<>();
+
+        records.add(new FoodRecord("Breakfast", 120, 95));
+        records.add(new FoodRecord("Lunch", 200, 160));
+        records.add(new FoodRecord("Dinner", 180, 140));
+
+        int totalWastage = 0;
+
+        for (FoodRecord record : records) {
+            int wastage = record.getWastage();
+            totalWastage += wastage;
+            System.out.println(record.mealType + " wastage: " + wastage + " plates");
+        }
+
+        System.out.println("Total food wastage: " + totalWastage + " plates");
+
+        if (totalWastage > 50) {
+            System.out.println("Suggestion: Reduce preparation quantity next cycle.");
+        } else {
+            System.out.println("Food preparation is optimized.");
+        }
+    }
+}
